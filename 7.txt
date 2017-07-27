@@ -1,0 +1,71 @@
+/*******************************************************************************************************************
+NAME       :PRANAV RADHAKRISHNAN
+CLASS      :S6 CSE
+ROLL NO    :16
+DATE       :02-03-2017
+PROGRAM NO :4
+AIM        :To find whether a number is odd or even
+******************************************************************************************************************/
+
+
+
+//PROGRAM:
+
+section .data
+userMsg db 'Please enter a number: '
+lenUserMsg equ $-userMsg
+even db 'The entered numbar is even'
+leneven equ $-even
+odd db 'The entered number is odd'
+lenodd equ $-odd
+
+section .bss
+ num resb 5
+
+section .text
+ global _start
+
+_start:
+ mov eax, 4
+ mov ebx, 1
+ mov ecx, userMsg
+mov edx, lenUserMsg
+int 80h
+
+
+mov eax, 3
+mov ebx, 0
+mov ecx,num
+mov edx,5
+int 80h
+
+mov eax,[num]
+and eax, 01
+jz label
+  mov eax,4
+  mov ebx,1
+  mov ecx,odd
+  mov edx,lenodd
+  int 80h
+
+ mov eax,1
+ mov ebx,0
+ int 80h
+label:
+  mov eax,4
+  mov ebx,1
+  mov ecx,even
+  mov edx,leneven
+  int 80h
+exit:
+ mov eax,1
+ mov ebx,0
+ int 80h
+
+
+
+/*OUTPUT:
+
+Please enter a number: 12
+The entered numbar is even
+*/
